@@ -13,31 +13,93 @@ namespace HockeyCards
         public int TaskOne()
         {
             //ER KOD HÄR
-            return 0;
+
+            int totalGoals = 0;
+
+            foreach (var item in HockeyCards)
+            {
+                totalGoals += item.NumberOfGoals;
+            }
+            return totalGoals;
         }
 
         public string TaskTwo()
         {
             //ER KOD HÄR
+            string name = "Markus Näslund";
+
+            foreach (var item in HockeyCards)
+            {
+                if (item.FullName == name)
+                    return item.Team;
+            }
+
             return "";
         }
 
         public int TaskThree()
         {
             //ER KOD HÄR
-            return 0;
+
+            int count = 0;
+
+            string team = Team.Ducks;
+
+            foreach (var player in HockeyCards)
+            {
+                if (player.Team == team)
+                count++;
+            }
+            return count;
         }
 
         public string TaskFour()
         {
             //ER KOD HÄR
-            return "";
+           
+            string playerName = "";
+            int totalGoals = 0;
+
+            foreach (var item in HockeyCards)
+            {
+                if(item.Position == Position.Defender && item.NumberOfGoals > totalGoals)
+                {
+                    playerName = item.FullName;
+                    totalGoals = item.NumberOfGoals;
+                }
+            }
+            return playerName;
         }
 
         public int TaskFive()
         {
             //ER KOD HÄR
-            return 0;
+
+            List<HockeyCard> noDuplicates = new List<HockeyCard>();
+
+            for (int i = 0; i < HockeyCards.Count; i++)
+            {
+               
+
+                for (int j = 0; j < HockeyCards.Count; j++)
+                {
+                    if (!(HockeyCards[i].CardNumber == HockeyCards[j].CardNumber && i != j))
+                    {
+                        
+
+                        foreach (var item in noDuplicates)
+                        {
+                            if(item.CardNumber != HockeyCards[i].CardNumber)
+                            {
+                                noDuplicates.Add(HockeyCards[i]);
+                            }
+                        }
+                    }
+                }
+            }
+
+
+            return noDuplicates.Count;
         }
 
         public void TaskSix()
